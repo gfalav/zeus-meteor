@@ -1,3 +1,27 @@
+<template name="listaClientes">
+	<div class="col-xs-12 col-sm-12">
+		<table class="table table-hover">
+			<tr>
+				<th>Apellido</th>
+				<th>Nombre</th>
+				<th>Falta</th>
+				<th>FUM</th>
+			</tr>
+			<tbody>
+				{{#each clientesVar}}
+				<tr>
+					<td>{{ this.apellido}}</td>
+					<td>{{ this.nombre}}</td>
+					<td>{{ this.contacto}}</td>
+					<td>{{ this.documento.nro}}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</template>
+
+
 <template name="clientesInsertTemplate">
 	<div class="col-xs-12 col-sm-12">
 	  {{#autoForm collection="Clientes" id="insertCustonClientesForm" type="method" meteormethod="insertaCliente"}}
@@ -5,6 +29,17 @@
 	  	{{> clientesForm}}
 
 	    <button type="submit" class="btn btn-primary">Inserta cliente</button>
+	  {{/autoForm}}
+	</div>
+</template>
+
+<template name="clientesShowTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Clientes" id="showCustonClientesForm" type="readonly" }}
+
+	  	{{> clientesForm}}
+
+	    <button type="submit" class="btn btn-primary">Show cliente</button>
 	  {{/autoForm}}
 	</div>
 </template>

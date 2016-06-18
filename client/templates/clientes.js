@@ -10,3 +10,11 @@ Template.clientesInsertTemplate.events({
     	});
 	}
 });
+
+Template.listaClientes.helpers({
+	clientesVar: function() {
+		return Clientes.find();
+	}
+})
+
+Meteor.subscribe('clientesPublish');
