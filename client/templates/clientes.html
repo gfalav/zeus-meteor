@@ -1,26 +1,48 @@
-<template name="listaClientes">
-	<div class="col-xs-12 col-sm-12">
-		<table class="table table-hover">
-			<tr>
-				<th>Apellido</th>
-				<th>Nombre</th>
-				<th>Falta</th>
-				<th>FUM</th>
-			</tr>
-			<tbody>
-				{{#each clientesVar}}
-				<tr>
-					<td>{{ this.apellido}}</td>
-					<td>{{ this.nombre}}</td>
-					<td>{{ this.contacto}}</td>
-					<td>{{ this.documento.nro}}</td>
-				</tr>
-				{{/each}}
-			</tbody>
-		</table>
+<template name="clientesShort">
+			{{apellido}} {{apellido2}}, {{nombres}} - {{documentoNro}}
+</template>
+
+<template name="clientesIndexTemplate">
+	<div class="container-fluid">
+		<div class="col-xs-12 col-sm-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-xs-12 col-sm-12">Cliente</th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each clientesVar}}
+						<tr>
+							<td>{{>clientesShort}}</td>
+							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-info">Mostrar</a></td>
+							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-warning">Editar</a></td>
+							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-danger">Borrar</a></td>
+						</tr>
+					{{/each}}
+				</tbody>
+				
+						
+			</table>
+
+
+		</div>
+		<a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-success">Nuevo</a>
 	</div>
 </template>
 
+<template name="clientesShowTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Clientes" id="showCustonClientesForm" doc=this type="readonly" }}
+
+	  	{{> clientesForm}}
+
+	  {{/autoForm}}
+	</div>
+</template>
 
 <template name="clientesInsertTemplate">
 	<div class="col-xs-12 col-sm-12">
@@ -29,17 +51,6 @@
 	  	{{> clientesForm}}
 
 	    <button type="submit" class="btn btn-primary">Inserta cliente</button>
-	  {{/autoForm}}
-	</div>
-</template>
-
-<template name="clientesShowTemplate">
-	<div class="col-xs-12 col-sm-12">
-	  {{#autoForm collection="Clientes" id="showCustonClientesForm" type="readonly" }}
-
-	  	{{> clientesForm}}
-
-	    <button type="submit" class="btn btn-primary">Show cliente</button>
 	  {{/autoForm}}
 	</div>
 </template>
@@ -60,8 +71,16 @@
 		       		{{> afQuickField name='nombres'}}
 		       	</div>
 		    </div>
-		   	<div class="col-xs-12 col-sm-12 form-inline">
-	       		{{> afQuickField name='documento'}}
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='documentoNro'}}
+		       	</div>
+		     	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='documentoTipo' options="allowed" firstOption=true}}
+		       	</div>
+		    	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='documentoEmisor' options="allowed" firstOption=true}}
+		       	</div>
 		    </div>
 		   	<div class="col-xs-12 col-sm-12">
 			    <div class="col-xs-12 col-sm-9">

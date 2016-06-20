@@ -11,7 +11,7 @@ Template.clientesInsertTemplate.events({
 	}
 });
 
-Template.listaClientes.helpers({
+Template.clientesIndexTemplate.helpers({
 	clientesVar: function() {
 		return Clientes.find();
 	}
