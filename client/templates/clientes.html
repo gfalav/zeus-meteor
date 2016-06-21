@@ -19,7 +19,7 @@
 						<tr>
 							<td>{{>clientesShort}}</td>
 							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-info">Mostrar</a></td>
-							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-warning">Editar</a></td>
+							<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">Editar</a></td>
 							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-danger">Borrar</a></td>
 						</tr>
 					{{/each}}
@@ -30,7 +30,7 @@
 
 
 		</div>
-		<a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-success">Nuevo</a>
+		<a href="{{pathFor 'clientesInsertTemplate'}}" class="btn btn-success">Nuevo</a>
 	</div>
 </template>
 
@@ -42,6 +42,8 @@
 
 	  {{/autoForm}}
 	</div>
+	<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">Editar</a></td>
+	<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
 </template>
 
 <template name="clientesInsertTemplate">
@@ -50,16 +52,30 @@
 
 	  	{{> clientesForm}}
 
-	    <button type="submit" class="btn btn-primary">Inserta cliente</button>
+	    <button type="submit" class="btn btn-danger">Enviar</button>
 	  {{/autoForm}}
 	</div>
 </template>
 
+<template name="clientesUpdateTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Clientes" id="updateCustonClientesForm" doc=this type="method" meteormethod="updateCliente"}}
+
+	  	{{> clientesForm}}
+
+	    <button type="submit" class="btn btn-danger">Actualiza</button>
+		<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
+	  {{/autoForm}}
+	</div>
+</template>
 
 <template name="clientesForm">
 	<fieldset>
 	<legend>Alta de Cliente</legend>
 	  	<div class="col-xs-12 col-sm-9">
+		   	<div class="col-xs-12 col-sm-12">
+		   		{{> afQuickField name='_id' type="hidden"}}
+		   	</div>
 		   	<div class="col-xs-12 col-sm-12">
 		      	<div class="col-xs-12 col-sm-4">
 		       		{{> afQuickField name='apellido'}}

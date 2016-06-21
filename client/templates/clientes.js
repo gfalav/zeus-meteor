@@ -1,7 +1,7 @@
 
 Template.clientesInsertTemplate.events({
 	'submit form': function(event){
-   		// event.preventDefault();
+   		event.preventDefault();
     	Meteor.call('insertaCliente', event, function(error, result) {
     		if (error)
     			return alert(error.reason)
@@ -9,6 +9,20 @@ Template.clientesInsertTemplate.events({
     			Router.go("/home");
     	});
 	}
+});
+
+Template.clientesUpdateTemplate.events({
+    'submit form': function(event){
+        event.preventDefault();
+        Meteor.call('updateCliente', event, function(error, result) {
+            if (error) {
+                return alert(error.reason);
+            }
+            else {
+                Router.go("/home");
+            }
+        });
+    }
 });
 
 Template.clientesIndexTemplate.helpers({

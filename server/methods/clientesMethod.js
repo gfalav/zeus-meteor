@@ -10,7 +10,16 @@ Meteor.methods({
 			var cliente = Clientes.insert(doc);
 			
 		}
+	},
 
-		return cliente;
+	updateCliente: function(doc){
+
+		if (this.userId) {
+			check(doc, ClienteSchema);
+			doc.fUM = new Date();
+			doc.usuario = this.userId;
+			var cliente = Clientes.update( {_id: doc._id }, {$set: {nombres: doc.nombres} });
+		}
 	}
+
 })
