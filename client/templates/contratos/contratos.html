@@ -1,0 +1,122 @@
+<template name="contratosShort">
+			{{nombre}} - {{cliente}} - {{cuenta}}, {{tipoContrato}} - {{estadoContrato}}
+</template>
+
+<template name="contratosIndexTemplate">
+	<div class="container-fluid">
+		<div class="col-xs-12 col-sm-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-xs-12 col-sm-12">Contrato</th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each contratosVar}}
+						<tr>
+							<td>{{>contratosShort}}</td>
+							<td><a href="{{pathFor 'contratosShowTemplate'}}" class="btn btn-info">D</a></td>
+							<td><a href="{{pathFor 'contratosUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+							<td><a href="{{pathFor 'contratosShowTemplate'}}" class="btn btn-danger">B</a></td>
+						</tr>
+					{{/each}}
+				</tbody>
+				
+						
+			</table>
+
+
+		</div>
+		<a href="{{pathFor 'contratosInsertTemplate'}}" class="btn btn-success">N</a>
+	</div>
+</template>
+
+<template name="contratosShowTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Contratos" id="showCustonContratosForm" doc=this type="readonly" }}
+
+	  	{{> contratosForm}}
+
+	  {{/autoForm}}
+	</div>
+	<td><a href="{{pathFor 'contratosUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+	<td><a href="{{pathFor 'contratos'}}" class="btn btn-default">Back</a></td>
+</template>
+
+<template name="contratosInsertTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  	{{#autoForm collection="Contratos" id="insertCustonContratosForm" type="method" meteormethod="insertaContrato"}}
+
+	  		{{> contratosForm}}
+
+	    	<button type="submit" class="btn btn-danger">Enviar</button>
+	  	{{/autoForm}}
+
+		<td><a href="{{pathFor 'contratos'}}" class="btn btn-default">Back</a></td>
+	</div>
+</template>
+
+<template name="contratosUpdateTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Contratos" id="updateCustonContratosForm" doc=this type="method" meteormethod="updateContrato"}}
+
+	  	{{> contratosForm}}
+
+	    <button type="submit" class="btn btn-danger">Enviar</button>
+		
+	  {{/autoForm}}
+	</div>
+	<td><a href="{{pathFor 'contratosShowTemplate'}}" class="btn btn-info">D</a></td>
+	<td><a href="{{pathFor 'contratos'}}" class="btn btn-default">Back</a></td>
+</template>
+
+<template name="contratosForm">
+	<fieldset>
+	<legend>Alta de Contrato</legend>
+	  	<div class="col-xs-12 col-sm-9">
+		   	<div class="col-xs-12 col-sm-12">
+		   		{{> afQuickField name='_id' type="hidden"}}
+		   	</div>
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='nombre'}}
+		       	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='clienteId' }}
+		       	</div>
+		     	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='cuentaId' }}
+		       	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+			    <div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='tipoContrato' options="allowed" firstOption=true}}
+		        </div>
+		      	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='estadoContrato' options="allowed" firstOption=true}}
+	          	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+		     	<div class="col-xs-12 col-sm-9">
+		       		{{> afQuickField name='dirPostalId'}}
+		       	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-3">
+		      		{{> afQuickField name='fAlta'}}
+		       	</div>
+		   		<div class="col-xs-12 col-sm-3">
+		   			{{> afQuickField name='fUM'}}
+		        </div>
+			    <div class="col-xs-12 col-sm-3">
+		        	{{> afQuickField name='fBaja'}}
+		        </div>
+		    </div>
+		</div>
+	</fieldset>
+</template>
