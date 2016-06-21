@@ -18,9 +18,9 @@
 					{{#each clientesVar}}
 						<tr>
 							<td>{{>clientesShort}}</td>
-							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-info">Mostrar</a></td>
-							<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">Editar</a></td>
-							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-danger">Borrar</a></td>
+							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-info">D</a></td>
+							<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-danger">B</a></td>
 						</tr>
 					{{/each}}
 				</tbody>
@@ -30,7 +30,7 @@
 
 
 		</div>
-		<a href="{{pathFor 'clientesInsertTemplate'}}" class="btn btn-success">Nuevo</a>
+		<a href="{{pathFor 'clientesInsertTemplate'}}" class="btn btn-success">N</a>
 	</div>
 </template>
 
@@ -42,18 +42,20 @@
 
 	  {{/autoForm}}
 	</div>
-	<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">Editar</a></td>
+	<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">E</a></td>
 	<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
 </template>
 
 <template name="clientesInsertTemplate">
 	<div class="col-xs-12 col-sm-12">
-	  {{#autoForm collection="Clientes" id="insertCustonClientesForm" type="method" meteormethod="insertaCliente"}}
+	  	{{#autoForm collection="Clientes" id="insertCustonClientesForm" type="method" meteormethod="insertaCliente"}}
 
-	  	{{> clientesForm}}
+	  		{{> clientesForm}}
 
-	    <button type="submit" class="btn btn-danger">Enviar</button>
-	  {{/autoForm}}
+	    	<button type="submit" class="btn btn-danger">Enviar</button>
+	  	{{/autoForm}}
+
+		<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
 	</div>
 </template>
 
@@ -63,10 +65,12 @@
 
 	  	{{> clientesForm}}
 
-	    <button type="submit" class="btn btn-danger">Actualiza</button>
-		<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
+	    <button type="submit" class="btn btn-danger">Enviar</button>
+		
 	  {{/autoForm}}
 	</div>
+	<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-info">D</a></td>
+	<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
 </template>
 
 <template name="clientesForm">
