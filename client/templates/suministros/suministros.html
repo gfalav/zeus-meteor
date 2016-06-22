@@ -1,26 +1,26 @@
-<template name="clientesShort">
+<template name="suministrosShort">
 			{{apellido}} {{apellido2}}, {{nombres}} - {{documentoNro}}
 </template>
 
-<template name="clientesIndexTemplate">
+<template name="suministrosIndexTemplate">
 	<div class="container-fluid">
 		<div class="col-xs-12 col-sm-12">
 			<table class="table">
 				<thead>
 					<tr>
-						<th class="col-xs-12 col-sm-12">Cliente</th>
+						<th class="col-xs-12 col-sm-12">Suministro</th>
 						<th class="col-xs-12 col-sm-1"></th>
 						<th class="col-xs-12 col-sm-1"></th>
 						<th class="col-xs-12 col-sm-1"></th>
 					</tr>
 				</thead>
 				<tbody>
-					{{#each clientesVar}}
+					{{#each suministrosVar}}
 						<tr>
-							<td>{{>clientesShort}}</td>
-							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-info">D</a></td>
-							<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">E</a></td>
-							<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-danger">B</a></td>
+							<td>{{>suministrosShort}}</td>
+							<td><a href="{{pathFor 'suministrosShowTemplate'}}" class="btn btn-info">D</a></td>
+							<td><a href="{{pathFor 'suministrosUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+							<td><a href="{{pathFor 'suministrosShowTemplate'}}" class="btn btn-danger">B</a></td>
 						</tr>
 					{{/each}}
 				</tbody>
@@ -30,52 +30,52 @@
 
 
 		</div>
-		<a href="{{pathFor 'clientesInsertTemplate'}}" class="btn btn-success">N</a>
+		<a href="{{pathFor 'suministrosInsertTemplate'}}" class="btn btn-success">N</a>
 	</div>
 </template>
 
-<template name="clientesShowTemplate">
+<template name="suministrosShowTemplate">
 	<div class="col-xs-12 col-sm-12">
-	  {{#autoForm collection="Clientes" id="showCustonClientesForm" doc=this type="readonly" }}
+	  {{#autoForm collection="Suministros" id="showCustonSuministrosForm" doc=this type="readonly" }}
 
-	  	{{> clientesForm}}
+	  	{{> suministrosForm}}
 
 	  {{/autoForm}}
 	</div>
-	<td><a href="{{pathFor 'clientesUpdateTemplate'}}" class="btn btn-warning">E</a></td>
-	<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
+	<td><a href="{{pathFor 'suministrosUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+	<td><a href="{{pathFor 'suministros'}}" class="btn btn-default">Back</a></td>
 </template>
 
-<template name="clientesInsertTemplate">
+<template name="suministrosInsertTemplate">
 	<div class="col-xs-12 col-sm-12">
-	  	{{#autoForm collection="Clientes" id="insertCustonClientesForm" type="method" meteormethod="insertaCliente"}}
+	  	{{#autoForm collection="Suministros" id="insertCustonSuministrosForm" type="method" meteormethod="insertaSuministro"}}
 
-	  		{{> clientesForm}}
+	  		{{> suministrosForm}}
 
 	    	<button type="submit" class="btn btn-danger">Enviar</button>
 	  	{{/autoForm}}
 
-		<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
+		<td><a href="{{pathFor 'suministros'}}" class="btn btn-default">Back</a></td>
 	</div>
 </template>
 
-<template name="clientesUpdateTemplate">
+<template name="suministrosUpdateTemplate">
 	<div class="col-xs-12 col-sm-12">
-	  {{#autoForm collection="Clientes" id="updateCustonClientesForm" doc=this type="method" meteormethod="updateCliente"}}
+	  {{#autoForm collection="Suministros" id="updateCustonSuministrosForm" doc=this type="method" meteormethod="updateSuministro"}}
 
-	  	{{> clientesForm}}
+	  	{{> suministrosForm}}
 
 	    <button type="submit" class="btn btn-danger">Enviar</button>
 		
 	  {{/autoForm}}
 	</div>
-	<td><a href="{{pathFor 'clientesShowTemplate'}}" class="btn btn-info">D</a></td>
-	<td><a href="{{pathFor 'clientes'}}" class="btn btn-default">Back</a></td>
+	<td><a href="{{pathFor 'suministrosShowTemplate'}}" class="btn btn-info">D</a></td>
+	<td><a href="{{pathFor 'suministros'}}" class="btn btn-default">Back</a></td>
 </template>
 
-<template name="clientesForm">
+<template name="suministrosForm">
 	<fieldset>
-	<legend>Alta de Cliente</legend>
+	<legend>Alta de Suministro</legend>
 	  	<div class="col-xs-12 col-sm-9">
 		   	<div class="col-xs-12 col-sm-12">
 		   		{{> afQuickField name='_id' type="hidden"}}

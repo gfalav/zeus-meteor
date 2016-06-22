@@ -1,0 +1,112 @@
+<template name="cuentasShort">
+			{{nombre}} - Cortable: {{ indCortable }} - T Vcto: {{tipoVencimiento}} - T Emisión: {{tipoEmision}} - F Pago: {{formaPago}} - Dom Postal: {{dirPostalId}}
+</template>
+
+<template name="cuentasIndexTemplate">
+	<div class="container-fluid">
+		<div class="col-xs-12 col-sm-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-xs-12 col-sm-12">Cuenta</th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each cuentasVar}}
+						<tr>
+							<td>{{>cuentasShort}}</td>
+							<td><a href="{{pathFor 'cuentasShowTemplate'}}" class="btn btn-info">D</a></td>
+							<td><a href="{{pathFor 'cuentasUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+							<td><a href="{{pathFor 'cuentasShowTemplate'}}" class="btn btn-danger">B</a></td>
+						</tr>
+					{{/each}}
+				</tbody>
+				
+						
+			</table>
+
+
+		</div>
+		<a href="{{pathFor 'cuentasInsertTemplate'}}" class="btn btn-success">N</a>
+	</div>
+</template>
+
+<template name="cuentasShowTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Cuentas" id="showCustonCuentasForm" doc=this type="readonly" }}
+
+	  	{{> cuentasForm}}
+
+	  {{/autoForm}}
+	</div>
+	<td><a href="{{pathFor 'cuentasUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+	<td><a href="{{pathFor 'cuentas'}}" class="btn btn-default">Back</a></td>
+</template>
+
+<template name="cuentasInsertTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  	{{#autoForm collection="Cuentas" id="insertCustonCuentasForm" type="method" meteormethod="insertaCuenta"}}
+
+	  		{{> cuentasForm}}
+
+	    	<button type="submit" class="btn btn-danger">Enviar</button>
+	  	{{/autoForm}}
+
+		<td><a href="{{pathFor 'cuentas'}}" class="btn btn-default">Back</a></td>
+	</div>
+</template>
+
+<template name="cuentasUpdateTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Cuentas" id="updateCustonCuentasForm" doc=this type="method" meteormethod="updateCuenta"}}
+
+	  	{{> cuentasForm}}
+
+	    <button type="submit" class="btn btn-danger">Enviar</button>
+		
+	  {{/autoForm}}
+	</div>
+	<td><a href="{{pathFor 'cuentasShowTemplate'}}" class="btn btn-info">D</a></td>
+	<td><a href="{{pathFor 'cuentas'}}" class="btn btn-default">Back</a></td>
+</template>
+
+<template name="cuentasForm">
+	<fieldset>
+	<legend>Alta de Cuenta</legend>
+	  	<div class="col-xs-12 col-sm-9">
+		   	<div class="col-xs-12 col-sm-6">
+		   		{{> afQuickField name='_id' type="hidden"}}
+		   	</div>
+		   	<div class="col-xs-12 col-sm-6">
+		   		{{> afQuickField name='clienteId' type="hidden"}}
+		   	</div>
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='nombre'}}
+		       	</div>
+		     	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='indCortable'}}
+		       	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='tipoVencimiento' options="allowed" firstOption=true}}
+		       	</div>
+		     	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='tipoEmision' options="allowed" firstOption=true}}
+		       	</div>
+		    	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='formaPago' options="allowed" firstOption=true}}
+		       	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+			    <div class="col-xs-12 col-sm-9">
+		       		{{> afQuickField name='dirPostalId'}}
+		        </div>
+		    </div>
+		</div>
+	</fieldset>
+</template>

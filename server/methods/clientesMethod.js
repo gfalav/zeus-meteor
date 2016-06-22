@@ -2,13 +2,13 @@ Meteor.methods({
 	insertaCliente: function(doc){
 
 		if (this.userId) {
+			console.log(doc);
 			check(doc, ClienteSchema);
 			doc.fAlta = new Date();
 			doc.fUM = new Date();
 			doc.fBaja = new Date();
 			doc.usuario = this.userId;
-			var cliente = Clientes.insert(doc);
-			
+			var cliente = Clientes.insert(doc);			
 		}
 	},
 
@@ -33,7 +33,6 @@ Meteor.methods({
 																		web: doc.web,
 																		tClienteId: doc.tClienteId,
 																		tratamientoEspecial: doc.tratamientoEspecial,
-																		cuenta: doc.cuenta,
 																		fAlta: doc.fAlta,
 																		fUM: doc.fUM,
 																		fBaja: doc.fBaja,

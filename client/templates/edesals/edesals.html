@@ -1,0 +1,132 @@
+<template name="edesalsShort">
+			{{apellido}} {{apellido2}}, {{nombres}} - {{documentoNro}}
+</template>
+
+<template name="edesalsIndexTemplate">
+	<div class="container-fluid">
+		<div class="col-xs-12 col-sm-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="col-xs-12 col-sm-12">Edesal</th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+						<th class="col-xs-12 col-sm-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each edesalsVar}}
+						<tr>
+							<td>{{>edesalsShort}}</td>
+							<td><a href="{{pathFor 'edesalsShowTemplate'}}" class="btn btn-info">D</a></td>
+							<td><a href="{{pathFor 'edesalsUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+							<td><a href="{{pathFor 'edesalsShowTemplate'}}" class="btn btn-danger">B</a></td>
+						</tr>
+					{{/each}}
+				</tbody>
+				
+						
+			</table>
+
+
+		</div>
+		<a href="{{pathFor 'edesalsInsertTemplate'}}" class="btn btn-success">N</a>
+	</div>
+</template>
+
+<template name="edesalsShowTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Edesals" id="showCustonEdesalsForm" doc=this type="readonly" }}
+
+	  	{{> edesalsForm}}
+
+	  {{/autoForm}}
+	</div>
+	<td><a href="{{pathFor 'edesalsUpdateTemplate'}}" class="btn btn-warning">E</a></td>
+	<td><a href="{{pathFor 'edesals'}}" class="btn btn-default">Back</a></td>
+</template>
+
+<template name="edesalsInsertTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  	{{#autoForm collection="Edesals" id="insertCustonEdesalsForm" type="method" meteormethod="insertaEdesal"}}
+
+	  		{{> edesalsForm}}
+
+	    	<button type="submit" class="btn btn-danger">Enviar</button>
+	  	{{/autoForm}}
+
+		<td><a href="{{pathFor 'edesals'}}" class="btn btn-default">Back</a></td>
+	</div>
+</template>
+
+<template name="edesalsUpdateTemplate">
+	<div class="col-xs-12 col-sm-12">
+	  {{#autoForm collection="Edesals" id="updateCustonEdesalsForm" doc=this type="method" meteormethod="updateEdesal"}}
+
+	  	{{> edesalsForm}}
+
+	    <button type="submit" class="btn btn-danger">Enviar</button>
+		
+	  {{/autoForm}}
+	</div>
+	<td><a href="{{pathFor 'edesalsShowTemplate'}}" class="btn btn-info">D</a></td>
+	<td><a href="{{pathFor 'edesals'}}" class="btn btn-default">Back</a></td>
+</template>
+
+<template name="edesalsForm">
+	<fieldset>
+	<legend>Alta de Edesal</legend>
+	  	<div class="col-xs-12 col-sm-12">
+		   	<div class="col-xs-12 col-sm-12">
+		   		{{> afQuickField name='_id' type="hidden"}}
+		   	</div>
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-3">
+		       		{{> afQuickField name='contratoId'}}
+		       	</div>
+		     	<div class="col-xs-12 col-sm-3">
+		       		{{> afQuickField name='suministroId'}}
+		       	</div>
+		    	<div class="col-xs-12 col-sm-3">
+		       		{{> afQuickField name='tarifa' options="allowed" firstOption=true}}
+		       	</div>
+		      	<div class="col-xs-12 col-sm-3">
+		       		{{> afQuickField name='perFactura' options="allowed" firstOption=true}}
+		       	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+		     	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='tipoIVA' options="allowed" firstOption=true}}
+		       	</div>
+		    	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='tipoIIBB' options="allowed" firstOption=true}}
+		       	</div>
+		    	<div class="col-xs-12 col-sm-4">
+		       		{{> afQuickField name='tipoPercepIIBB' options="allowed" firstOption=true}}
+		       	</div>
+		    </div>
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-3">
+		      		{{> afQuickField name='fAlta'}}
+		       	</div>
+		   		<div class="col-xs-12 col-sm-3">
+		   			{{> afQuickField name='fUM'}}
+		        </div>
+			    <div class="col-xs-12 col-sm-3">
+		        	{{> afQuickField name='fBaja'}}
+		        </div>
+		    </div>		    
+		   	<div class="col-xs-12 col-sm-12">
+		      	<div class="col-xs-12 col-sm-4">
+		      		{{> afQuickField name='potencias'}}
+		       	</div>
+		   		<div class="col-xs-12 col-sm-4">
+		   			{{> afQuickField name='consumoFijo'}}
+		        </div>
+			    <div class="col-xs-12 col-sm-4">
+		        	{{> afQuickField name='cosFi'}}
+		        </div>
+		    </div>		    
+		</div>
+	</fieldset>
+</template>

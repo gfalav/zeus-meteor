@@ -1,8 +1,8 @@
 
-Template.contratosInsertTemplate.events({
+Template.suministrosInsertTemplate.events({
 	'submit form': function(){
    		event.preventDefault();
-    	Meteor.call('insertaContrato', this.doc, function(error, result) {
+    	Meteor.call('insertaSuministro', this.doc, function(error, result) {
     		if (error)
     			return alert(error.reason)
     		else
@@ -11,10 +11,10 @@ Template.contratosInsertTemplate.events({
 	}
 });
 
-Template.contratosUpdateTemplate.events({
+Template.suministrosUpdateTemplate.events({
     'submit form': function(){
         event.preventDefault();
-        Meteor.call('updateContrato', this.doc, function(error, result) {
+        Meteor.call('updateSuministro', this.doc, function(error, result) {
             if (error) {
                 return alert(error.reason);
             }
@@ -25,10 +25,10 @@ Template.contratosUpdateTemplate.events({
     }
 });
 
-Template.contratosIndexTemplate.helpers({
-	contratosVar: function() {
-		return Contratos.find();
+Template.suministrosIndexTemplate.helpers({
+	suministrosVar: function() {
+		return Suministros.find();
 	}
 })
 
-Meteor.subscribe('contratosPublish');
+Meteor.subscribe('suministrosPublish');

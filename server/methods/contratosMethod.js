@@ -2,14 +2,12 @@ Meteor.methods({
 	insertaContrato: function(doc){
 
 		if (this.userId) {
-			console.log(doc);
 			check(doc, ContratoSchema);
 			doc.fAlta = new Date();
 			doc.fUM = new Date();
 			doc.fBaja = new Date();
 			doc.usuario = this.userId;
-			var contrato = Contratos.insert(doc);
-			
+			var contrato = Contratos.insert(doc);			
 		}
 	},
 
@@ -27,7 +25,8 @@ Meteor.methods({
 																			dirPostalId: doc.dirPostalId,
 																			fAlta: doc.fAlta,
 																			fUM: doc.fUM,
-																			fBaja: doc.fBaja
+																			fBaja: doc.fBaja,
+																			usuario: doc.usuario
 																		} });
 		}
 	}
