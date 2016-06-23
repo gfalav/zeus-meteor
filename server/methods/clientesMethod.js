@@ -2,7 +2,6 @@ Meteor.methods({
 	insertaCliente: function(doc){
 
 		if (this.userId) {
-			console.log(doc);
 			check(doc, ClienteSchema);
 			doc.fAlta = new Date();
 			doc.fUM = new Date();
