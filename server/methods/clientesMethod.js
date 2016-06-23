@@ -11,31 +11,15 @@ Meteor.methods({
 		}
 	},
 
-	updateCliente: function(doc){
+	updateCliente: function(doctoupd){
 
 		if (this.userId) {
+			var doc = doctoupd.updateDoc;
 			check(doc, ClienteSchema);
 			doc.fUM = new Date();
 			doc.usuario = this.userId;
-			var cliente = Clientes.update( {_id: doc._id }, {$set: {	apellido: doc.apellido,
-																		apellido2: doc.apellido2,
-																		nombres: doc.nombres,
-																		contacto:doc.contacto,
-																		apoderado:doc.apoderado,
-																		dirClienteId: doc.dirClienteId,
-																		documentoNro: doc.documentoNro,
-																		documentoTipo: doc.documentoTipo,
-																		documentoEmisor: doc.documentoEmisor,
-																		ciiu: doc.ciiu,
-																		telefono: doc.telefono,
-																		email: doc.email,
-																		web: doc.web,
-																		tClienteId: doc.tClienteId,
-																		tratamientoEspecial: doc.tratamientoEspecial,
-																		fAlta: doc.fAlta,
-																		fUM: doc.fUM,
-																		fBaja: doc.fBaja,
-																		usuario: doc.usuario } });
+			console.log(doc);
+			var cliente = Clientes.update( {_id: doc._id }, {$set: doc });
 		}
 	}
 

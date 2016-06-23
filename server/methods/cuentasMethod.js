@@ -2,12 +2,13 @@ Meteor.methods({
 	insertaCuenta: function(doc){
 
 		if (this.userId) {
-			check(doc, CuentaSchema);
-			doc.fAlta = new Date();
-			doc.fUM = new Date();
-			doc.fBaja = new Date();
-			doc.usuario = this.userId;
-			var cuenta = Cuentas.insert(doc);
+			var doctoins = doc.insertDoc;
+			check(doctoins, CuentaSchema);
+			doctoins.fAlta = new Date();
+			doctoins.fUM = new Date();
+			doctoins.fBaja = new Date();
+			doctoins.usuario = this.userId;
+			var cuenta = Cuentas.insert(doctoins);			
 		}
 	},
 

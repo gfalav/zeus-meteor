@@ -2,8 +2,12 @@
 Template.cuentasInsertTemplate.events({
 	'submit form': function(){
    		event.preventDefault();
-    	Meteor.call('insertaCuenta', this.doc, function(error, result) {
-    		if (error) return alert(error.reason);
+        var doc = AutoForm.getFormValues("insertCustonCuentasForm");
+    	Meteor.call('insertaCuenta', doc, function(error, result) {
+    		if (error)
+                return alert(error.reason)
+            else
+                Router.go("home");
     	});
         Router.go("home");
 	}
@@ -13,7 +17,10 @@ Template.cuentasUpdateTemplate.events({
     'submit form': function(){
         event.preventDefault();
         Meteor.call('updateCuenta', this.doc, function(error, result) {
-            if (error) return alert(error.reason);
+           if (error)
+                return alert(error.reason)
+            else
+                Router.go("home");
         });
         Router.go("home");
     }
